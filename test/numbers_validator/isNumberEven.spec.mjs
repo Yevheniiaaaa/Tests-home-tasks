@@ -37,6 +37,54 @@ describe('isNumberEven', function () {
     expect(validator.isNumberEven(4)).to.be.equal(true);
   });
 
+  it('should return false if number is even', function () {
+    expect(validator.isNumberEven(5)).to.be.equal(false);
+  });
+
+  it('should throw an error when provided a string', () => {
+expect(() => {
+validator.isNumberEven('4');
+}).to.throw('[4] is not of type "Number" it is of type "string"');
+  });
+
+describe('getEvenNumbersFromArray', function () {
+  let myInstance;
+
+  beforeEach(function () {
+    myInstance = new NumbersValidator();
+  });
+
+  afterEach(function () {
+    myInstance = null;
+  });
+
+  it('should get array an even numbers from the given array of numbers', function (){
+    const input = [1,2,3,4,4,5,11];
+    const expectedOutput = [2,4,4];
+    const result = myInstance.getEvenNumbersFromArray(input);
+    expect(result).to.deep.equal(expectedOutput);
+}); 
+
+  it('should get an empty array from the given array of numbers if there is no even number', function (){
+    const input = [1,3,5,7];
+    const expectedOutput = [];
+    const result = myInstance.getEvenNumbersFromArray(input);
+    expect(result).to.deep.equal(expectedOutput);
+  })
+
+  it('should throw an error with provided string', () => {
+    expect(() => {
+      myInstance.getEvenNumbersFromArray([1,2,'t',5]);
+    }).to.throw(`[1,2,t,5] is not an array of "Numbers"`);
+  });
+
+})
+
+
+
+ 
+
+
   // Additional tests would follow for different test cases, such as testing if an odd number
   // returns false or if passing a non-number throws an error.
 });

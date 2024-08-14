@@ -4,7 +4,9 @@
   "description": "��#\u0000 \u0000T\u0000e\u0000s\u0000t\u0000s\u0000-\u0000h\u0000o\u0000m\u0000e\u0000-\u0000t\u0000a\u0000s\u0000k\u0000s\u0000\r\u0000 \u0000",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "coverage": "c8 npm test",
+    "lint": "eslint ./ --fix"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,7 @@
   "homepage": "https://github.com/Yevheniiaaaa/Tests-home-tasks#readme",
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "c8": "^10.1.2",
     "eslint": "^9.9.0",
     "globals": "^15.9.0",
     "mochawesome": "^7.1.3"
