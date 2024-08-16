@@ -37,7 +37,7 @@ describe('isNumberEven', function () {
     expect(validator.isNumberEven(4)).to.be.equal(true);
   });
 
-  it('should return false if number is even', function () {
+  it('should return false if number is not even', function () {
     expect(validator.isNumberEven(5)).to.be.equal(false);
   });
 
@@ -48,38 +48,92 @@ validator.isNumberEven('4');
   });
 
 describe('getEvenNumbersFromArray', function () {
-  let myInstance;
+  let validator;
 
   beforeEach(function () {
-    myInstance = new NumbersValidator();
+    validator = new NumbersValidator();
   });
 
   afterEach(function () {
-    myInstance = null;
+    validator = null;
   });
 
   it('should get array an even numbers from the given array of numbers', function (){
     const input = [1,2,3,4,4,5,11];
     const expectedOutput = [2,4,4];
-    const result = myInstance.getEvenNumbersFromArray(input);
+    const result = validator.getEvenNumbersFromArray(input);
     expect(result).to.deep.equal(expectedOutput);
 }); 
 
   it('should get an empty array from the given array of numbers if there is no even number', function (){
     const input = [1,3,5,7];
     const expectedOutput = [];
-    const result = myInstance.getEvenNumbersFromArray(input);
+    const result = validator.getEvenNumbersFromArray(input);
     expect(result).to.deep.equal(expectedOutput);
   })
 
   it('should throw an error with provided string', () => {
     expect(() => {
-      myInstance.getEvenNumbersFromArray([1,2,'t',5]);
+      validator.getEvenNumbersFromArray([1,2,'t',5]);
     }).to.throw(`[1,2,t,5] is not an array of "Numbers"`);
   });
 
 })
 
+describe('isAllNumbers', function(){
+  let validator;
+
+  beforeEach(function () {
+    validator = new NumbersValidator();
+  });
+
+  afterEach(function () {
+    validator = null;
+  });
+
+  it('should return true if all elements in an array are numbers', function() {
+    const input = [1,2,3,4,5];
+    expect(validator.isAllNumbers(input)).to.be.equal(true);
+  });
+
+  it('should return false if not all elements in an array are numbers', () => {
+    const input = [1,2,'b',5];
+    expect(validator.isAllNumbers(input)).to.be.equal(false);
+  });
+
+  it('should throw an error if input is not array', () => {
+    expect(() => {
+      validator.isAllNumbers('am');
+    }).to.Throw('[am] is not an array');
+  });
+});
+
+describe('isInteger', () => {
+  let validator;
+
+  beforeEach(() => {
+    validator = new NumbersValidator();
+  });
+
+  afterEach(() => {
+    validator = null;
+  });
+
+  it('should return true if a value is an integer', () => {
+    expect(validator.isInteger(4)).to.be.equal(true);
+  });
+
+  it('should return false if a value is not an integer', () => {
+    expect(validator.isInteger(3.5)).to.be.equal(false);
+  });
+
+  it('should trow an error if a value is not a number', () => {
+    expect(() => {
+      validator.isInteger('am');
+    }).to.Throw('[am] is not a number');
+  });
+  
+})
 
 
  
